@@ -10,13 +10,13 @@ interface ISuccessActions {
 }
 
 export class Success extends Component<ISuccess> {
-    private successDescription: HTMLElement;
+    protected _total: HTMLElement;
     protected _close: HTMLButtonElement;
 
     constructor(container: HTMLElement, actions: ISuccessActions) {
         super(container);
 
-        this.successDescription = ensureElement<HTMLElement>('.order-success__description', this.container);
+        this._total = ensureElement<HTMLElement>('.order-success__description', this.container);
         this._close = ensureElement<HTMLButtonElement>('.order-success__close', this.container);
 
         if (actions?.onClick) {
@@ -25,6 +25,6 @@ export class Success extends Component<ISuccess> {
     }
 
     set total (value: number){
-        this.successDescription.textContent = `Списано ${value} синапсов`;
+        this._total.textContent = `Списано ${value} синапсов`;
     }
 }
