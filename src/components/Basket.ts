@@ -1,5 +1,5 @@
 import {Component} from "./base/component";
-import {cloneTemplate, createElement, ensureElement} from "./../utils/utils";
+import { createElement, ensureElement} from "./../utils/utils";
 import {EventEmitter} from "./base/events";
 
 interface IBasket {
@@ -48,6 +48,6 @@ export class Basket extends Component<IBasket> {
     }
 
     set total(total: number) {
-        this.setText(this._total, total);
+        this.setText(this._total, `${total} синапсов`);
     }
 }
