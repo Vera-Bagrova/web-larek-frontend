@@ -58,15 +58,12 @@ export class Card extends Component<IProduct> {
 
   set category(value: string) {
     this.setText(this._category, value);
-		this._category.classList.add(categories[value]);
-
+		this.toggleClass(this._category, categories[value]);
   }
 
   set price(value: number | null) {
-    this._price.textContent = value ? `${value} синапсов` : 'Бесценно';
-		if (this._button) { 
-			this._button.disabled = !value;
-		}
+		this.setText(this._price, value ? `${value} синапсов` : 'Бесценно');
+		this.setDisabled(this._button, !value);
 	}
 
   set button(value: string) {

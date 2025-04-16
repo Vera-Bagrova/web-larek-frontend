@@ -13,14 +13,14 @@ export class Order extends Form<TOrderInfo> {
     this._cash = container.elements.namedItem('cash') as HTMLButtonElement;
 
     this._online.addEventListener('click', () => {
-      this._online.classList.add('button_alt-active');
-      this._cash.classList.remove('button_alt-active');
+      this.toggleOnline();
+      this.toggleCash(false);
       this.onInputChange('payment', 'Онлайн');
     })
  
     this._cash.addEventListener('click', () => {
-      this._cash.classList.add('button_alt-active');
-      this._online.classList.remove('button_alt-active');
+      this.toggleCash();
+      this.toggleOnline(false);
       this.onInputChange('payment', 'При получении');
     })
   }
@@ -29,9 +29,11 @@ export class Order extends Form<TOrderInfo> {
 		(this.container.elements.namedItem('address') as HTMLInputElement).value = value;
 	}
 
-  // Снять выбор c кнопок способа оплаты
-  disableButtons() {
-    this._online.classList.remove('button_alt-active');
-    this._cash.classList.remove('button_alt-active');
+  toggleOnline(state: boolean = true) {
+    this.toggleClass(this._online, 'button_alt-active', state);
   }
+
+  toggleCash(state: boolean = true) {
+    this.toggleClass(this._cash, 'button_alt-active', state);
+  } 
 }

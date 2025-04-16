@@ -75,14 +75,14 @@ events.on('card:selected', (item: IProduct) => {
     onClick: () => {
 			if (basketData.isInBasket(item)) {
 				basketData.deleteCard(item.id);
-				cardPreview.button = 'В корзину';
+				cardPreview.button = 'Купить';
 			} else {
 				basketData.addCard(item);
-				cardPreview.button = 'Из корзины';
+				cardPreview.button = 'Убрать';
 			}
     }
   });
-  cardPreview.button = basketData.isInBasket(item) ? 'Из корзины' : 'В корзину';
+  cardPreview.button = basketData.isInBasket(item) ? 'Убрать' : 'Купить';
   modal.render({content: cardPreview.render(item)});
 });
 
@@ -195,7 +195,8 @@ events.on('contacts:submit', () => {
     .then(() => {
       basketData.clear();
       orderData.clear();
-      order.disableButtons();
+      order.toggleOnline(false);
+      order.toggleCash(false);
     })
     .catch(err => {
       console.error(err);

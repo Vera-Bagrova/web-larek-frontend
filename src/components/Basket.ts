@@ -1,6 +1,6 @@
-import {Component} from "./base/component";
-import { createElement, ensureElement} from "./../utils/utils";
-import {EventEmitter} from "./base/events";
+import { Component } from "./base/component";
+import { createElement, ensureElement } from "./../utils/utils";
+import { EventEmitter } from "./base/events";
 
 interface IBasket {
     items: HTMLElement[];
@@ -32,19 +32,17 @@ export class Basket extends Component<IBasket> {
     set items(items: HTMLElement[]) {
         if (items.length) {
             this._list.replaceChildren(...items);
+            this.setDisabled(this._button, false);
         } else {
             this._list.replaceChildren(createElement<HTMLParagraphElement>('p', {
                 textContent: 'Корзина пуста'
             }));
+            this.setDisabled(this._button, true);
         }
     }
 
     set selected(total: number) {
-        if (total) {
-            this.setDisabled(this._button, false);
-        } else {
-            this.setDisabled(this._button, true);
-        }
+        this.setDisabled(this._button, !total);
     }
 
     set total(total: number) {

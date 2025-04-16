@@ -225,6 +225,8 @@ type TFormErrors = Partial<Record<keyof IOrder, string>>;
 
 Методы:
 - `set content(value: HTMLElement)` - устанавливает новое содержимое модального окна;
+- `_toggleModal(state: boolean = true): void` - метод для переключения активности модального окна;
+- `_handleEscape = (evt: KeyboardEvent) => {}` - обработчик в виде стрелочного метода;
 - `open(): void` - открывает модальное окно;
 - `close(): void` - закрывает модальное окно.
 
@@ -251,7 +253,8 @@ type TFormErrors = Partial<Record<keyof IOrder, string>>;
 
 Методы:
 - `set address(value: string)` - устанавливает значения поля address в форме заказа;
-- `disableButtons(): void` - cнимает выбор c кнопок способа оплаты.
+- `toggleOnline(state: boolean = true): void` - переключатель активности кнопки онлайн оплаты;
+- `toggleCash(state: boolean = true): void` - переключатель активности кнопки оплаты наличными.
 
 #### Класс Contacts
 Наследует класс Form. Отвечает за форму контактной информации покупателя, содержащей поля ввода. 
